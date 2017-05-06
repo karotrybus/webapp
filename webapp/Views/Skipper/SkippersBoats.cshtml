@@ -1,0 +1,75 @@
+﻿@model IEnumerable<webapp.Models.Boat>
+
+@{
+    ViewBag.Title = "SkippersBoats";
+}
+
+<h2>SkippersBoats</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bunks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isRented)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Port.Location)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bunks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isRented)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Port.Location)
+        </td>
+        <td>
+            @if (Request.IsAuthenticated)
+            { 
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) <br />
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

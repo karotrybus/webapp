@@ -1,0 +1,51 @@
+﻿@model IEnumerable<webapp.Models.Skipper>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Boats", "SkippersBoats", new { id = item.Id }) <br />
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) <br />
+            @if (Request.IsAuthenticated)
+            { 
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) <br />
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })    
+            }
+        </td>
+    </tr>
+}
+
+</table>

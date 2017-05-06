@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="65c3cd1255654495af0a98d74110cc85" Name="Diagram1" >
+        <EntityTypeShape EntityType="Marine.Port" Width="1.5" PointX="1.125" PointY="0.5" />
+        <EntityTypeShape EntityType="Marine.Boat" Width="1.5" PointX="6.25" PointY="0.5" />
+        <EntityTypeShape EntityType="Marine.Skipper" Width="1.5" PointX="3.625" PointY="2" />
+        <AssociationConnector Association="Marine.BoatSkipper" />
+        <AssociationConnector Association="Marine.BoatPort" />
+        <AssociationConnector Association="Marine.PortSkipper" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,86 @@
+﻿@model webapp.Models.Boat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Boat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bunks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bunks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isRented)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isRented)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skipper.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skipper.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Port.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Port.Location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   @if (Request.IsAuthenticated)
+   {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+       <br />
+   }
+    @Html.ActionLink("Back to List", "Index")
+</p>

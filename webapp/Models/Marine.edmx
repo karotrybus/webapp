@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Marine.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BoatSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Bunks" Type="int" Nullable="false" />
+          <Property Name="isRented" Type="bit" Nullable="false" />
+          <Property Name="SkipperId" Type="int" Nullable="false" />
+          <Property Name="PortId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PortSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Spots" Type="int" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PortSkipper">
+          <Key>
+            <PropertyRef Name="Port_Id" />
+            <PropertyRef Name="Skipper_Id" />
+          </Key>
+          <Property Name="Port_Id" Type="int" Nullable="false" />
+          <Property Name="Skipper_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkipperSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BoatPort">
+          <End Role="PortSet" Type="Self.PortSet" Multiplicity="1" />
+          <End Role="BoatSet" Type="Self.BoatSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PortSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BoatSet">
+              <PropertyRef Name="PortId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoatSkipper">
+          <End Role="SkipperSet" Type="Self.SkipperSet" Multiplicity="1" />
+          <End Role="BoatSet" Type="Self.BoatSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkipperSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BoatSet">
+              <PropertyRef Name="SkipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortSkipper_Port">
+          <End Role="PortSet" Type="Self.PortSet" Multiplicity="1" />
+          <End Role="PortSkipper" Type="Self.PortSkipper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PortSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PortSkipper">
+              <PropertyRef Name="Port_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PortSkipper_Skipper">
+          <End Role="SkipperSet" Type="Self.SkipperSet" Multiplicity="1" />
+          <End Role="PortSkipper" Type="Self.PortSkipper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkipperSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PortSkipper">
+              <PropertyRef Name="Skipper_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarineStoreContainer">
+          <EntitySet Name="BoatSet" EntityType="Self.BoatSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PortSet" EntityType="Self.PortSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PortSkipper" EntityType="Self.PortSkipper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkipperSet" EntityType="Self.SkipperSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BoatPort" Association="Self.FK_BoatPort">
+            <End Role="PortSet" EntitySet="PortSet" />
+            <End Role="BoatSet" EntitySet="BoatSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoatSkipper" Association="Self.FK_BoatSkipper">
+            <End Role="SkipperSet" EntitySet="SkipperSet" />
+            <End Role="BoatSet" EntitySet="BoatSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortSkipper_Port" Association="Self.FK_PortSkipper_Port">
+            <End Role="PortSet" EntitySet="PortSet" />
+            <End Role="PortSkipper" EntitySet="PortSkipper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PortSkipper_Skipper" Association="Self.FK_PortSkipper_Skipper">
+            <End Role="SkipperSet" EntitySet="SkipperSet" />
+            <End Role="PortSkipper" EntitySet="PortSkipper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Marine" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MarineContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PortSet" EntityType="Marine.Port" />
+          <EntitySet Name="BoatSet" EntityType="Marine.Boat" />
+          <EntitySet Name="SkipperSet" EntityType="Marine.Skipper" />
+          <AssociationSet Name="BoatSkipper" Association="Marine.BoatSkipper">
+            <End Role="Boat" EntitySet="BoatSet" />
+            <End Role="Skipper" EntitySet="SkipperSet" />
+          </AssociationSet>
+          <AssociationSet Name="BoatPort" Association="Marine.BoatPort">
+            <End Role="Boat" EntitySet="BoatSet" />
+            <End Role="Port" EntitySet="PortSet" />
+          </AssociationSet>
+          <AssociationSet Name="PortSkipper" Association="Marine.PortSkipper">
+            <End Role="Port" EntitySet="PortSet" />
+            <End Role="Skipper" EntitySet="SkipperSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Port">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Spots" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Boat" Relationship="Marine.BoatPort" FromRole="Port" ToRole="Boat" />
+          <NavigationProperty Name="SkipperSet" Relationship="Marine.PortSkipper" FromRole="Port" ToRole="Skipper" />
+        </EntityType>
+        <EntityType Name="Boat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Bunks" Type="Int32" Nullable="false" />
+          <Property Name="isRented" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Skipper" Relationship="Marine.BoatSkipper" FromRole="Boat" ToRole="Skipper" />
+          <Property Name="SkipperId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Port" Relationship="Marine.BoatPort" FromRole="Boat" ToRole="Port" />
+          <Property Name="PortId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skipper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Boat" Relationship="Marine.BoatSkipper" FromRole="Skipper" ToRole="Boat" />
+          <NavigationProperty Name="PortSet" Relationship="Marine.PortSkipper" FromRole="Skipper" ToRole="Port" />
+        </EntityType>
+        <Association Name="BoatSkipper">
+          <End Type="Marine.Boat" Role="Boat" Multiplicity="*" />
+          <End Type="Marine.Skipper" Role="Skipper" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Skipper">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="SkipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BoatPort">
+          <End Type="Marine.Boat" Role="Boat" Multiplicity="*" />
+          <End Type="Marine.Port" Role="Port" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Port">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boat">
+              <PropertyRef Name="PortId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PortSkipper">
+          <End Type="Marine.Port" Role="Port" Multiplicity="*" />
+          <End Type="Marine.Skipper" Role="Skipper" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MarineStoreContainer" CdmEntityContainer="MarineContainer">
+    <EntitySetMapping Name="PortSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Marine.Port)">
+        <MappingFragment StoreEntitySet="PortSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Spots" ColumnName="Spots" />
+          <ScalarProperty Name="Email" ColumnName="Contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoatSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Marine.Boat)">
+        <MappingFragment StoreEntitySet="BoatSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Bunks" ColumnName="Bunks" />
+          <ScalarProperty Name="isRented" ColumnName="isRented" />
+          <ScalarProperty Name="SkipperId" ColumnName="SkipperId" />
+          <ScalarProperty Name="PortId" ColumnName="PortId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SkipperSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Marine.Skipper)">
+        <MappingFragment StoreEntitySet="SkipperSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <AssociationSetMapping Name="PortSkipper" TypeName="Marine.PortSkipper" StoreEntitySet="PortSkipper">
+            <EndProperty Name="Skipper">
+              <ScalarProperty Name="Id" ColumnName="Skipper_Id" />
+            </EndProperty>
+            <EndProperty Name="Port">
+              <ScalarProperty Name="Id" ColumnName="Port_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

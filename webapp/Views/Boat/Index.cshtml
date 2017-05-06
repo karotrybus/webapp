@@ -1,0 +1,69 @@
+﻿@model IEnumerable<webapp.Models.Boat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (Request.IsAuthenticated)
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+
+@using (Html.BeginForm())
+{
+    <p>
+        Look by: name/number of bunks/type @Html.TextBox("name")
+        @Html.TextBox("bunks")
+        @Html.TextBox("type")
+        <input type="submit" class="btn" value="Look up!" />
+    </p>
+
+    <p>
+        Sort by
+        @Html.ActionLink("model", "Sorted", new { c = 1 }) /
+        @Html.ActionLink("number of bunks", "Sorted", new { c = 2 }) /
+        @Html.ActionLink("price", "Sorted", new { c = 3 })
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
+            <br />
+            @if (Request.IsAuthenticated)
+            {
+                @Html.ActionLink("Rent", "RentBoat", new { id = item.Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>
