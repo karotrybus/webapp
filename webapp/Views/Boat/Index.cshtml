@@ -4,21 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Boats in Marina</h2>
 
 @if (Request.IsAuthenticated)
 {
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Boat", "Create")
 </p>
 }
 
 @using (Html.BeginForm())
 {
     <p>
-        Look by: name/number of bunks/type @Html.TextBox("name")
-        @Html.TextBox("bunks")
-        @Html.TextBox("type")
+        Look by:
+        @Html.TextBox("name", null, new { @class = "form-control", @placeholder = "name" })
+        @Html.TextBox("bunks", null, new { @class = "form-control", @placeholder = "number of bunks"})
+        @Html.TextBox("type", null, new { @class = "form-control", @placeholder = "type" })
         <input type="submit" class="btn" value="Look up!" />
     </p>
 

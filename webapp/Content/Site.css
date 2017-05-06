@@ -1,4 +1,5 @@
 ﻿body {
+    background-color: whitesmoke;
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -21,4 +22,43 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.jumbotron {
+    background-color: rgb(229, 229, 229);
+    border-bottom-style: double;
+    background-image: url('../Images/sea.jpg');
+     background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+}
+
+.navbar {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #000;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: lightpink;
+}
+
+.navbar-inverse .navbar-brand{
+    color: #000;
+}
+
+.navbar-inverse .navbar-brand:hover{
+    color: lightpink;
+}
+
+p {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
