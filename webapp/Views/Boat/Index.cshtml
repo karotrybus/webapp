@@ -17,11 +17,23 @@
 {
     <p>
         Look by:
-        @Html.TextBox("name", null, new { @class = "form-control", @placeholder = "name" })
-        @Html.TextBox("bunks", null, new { @class = "form-control", @placeholder = "number of bunks"})
-        @Html.TextBox("type", null, new { @class = "form-control", @placeholder = "type" })
-        <input type="submit" class="btn" value="Look up!" />
-    </p>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.TextBox("name", null, new { @class = "form-control", @placeholder = "name" })
+                </div>
+
+            <div class="col-md-2">
+                @Html.TextBox("bunks", null, new { @class = "form-control", @placeholder = "number of bunks" })
+                </div>
+
+            <div class="col-md-2">
+                @Html.TextBox("type", null, new { @class = "form-control", @placeholder = "type" })
+
+                </div>
+            <div class="col-md-2">
+                <input type="submit" class="btn" value="Look up!" />
+            </div>
+        </div>    </p>
 
     <p>
         Sort by
