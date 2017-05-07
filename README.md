@@ -1,2 +1,2 @@
 # webapp
-Opis projektu w katalogu webapp/Docs
+Opis projektu znajduje się w katalogu webapp/Docs
