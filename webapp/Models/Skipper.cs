@@ -11,7 +11,8 @@ namespace webapp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Skipper
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +23,11 @@ namespace webapp.Models
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "Please enter name of your company!")]
         public string Name { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

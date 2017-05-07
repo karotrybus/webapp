@@ -72,3 +72,21 @@ td a:hover {
     text-decoration: none;
 
 }
+
+p a {
+    color: darkgray;
+}
+
+p a:hover {
+    color: lightpink;
+    text-decoration: none;
+}
+
+div a {
+    color: darkgray;
+}
+
+div a:hover {
+    color: lightpink;
+    text-decoration: none;
+}

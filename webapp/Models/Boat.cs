@@ -11,17 +11,24 @@ namespace webapp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Boat
     {
         public int Id { get; set; }
+        [Required(ErrorMessage="Please enter your name!")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Please enter type of your boat!")]
         public string Type { get; set; }
         public string Model { get; set; }
+        [Required(ErrorMessage = "Please enter price!")]
         public double Price { get; set; }
+        [Range(0,200)]
         public int Bunks { get; set; }
         public bool isRented { get; set; }
+        [Required(ErrorMessage = "Your ship must have Skipper!")]
         public int SkipperId { get; set; }
+        [Required(ErrorMessage = "Your ship must have Port!")]
         public int PortId { get; set; }
     
         public virtual Skipper Skipper { get; set; }
